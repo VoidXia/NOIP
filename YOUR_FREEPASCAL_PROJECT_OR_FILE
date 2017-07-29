@@ -1,0 +1,22 @@
+{
+		"version": "0.1.0",
+		"windows": {
+			"command": "FPC_BIN_PATH"
+		},
+		"linux": {
+			"command": "FPC_BIN_PATH"
+		},
+		"isShellCommand": true,
+		"showOutput": "always",
+		"args": ["YOUR_FREEPASCAL_PROJECT_OR_FILE"],
+		"problemMatcher": {
+			"owner": "external",
+			"pattern": {
+				"regexp": "^([\\w]+\\.(p|pp|pas))\\((\\d+)\\,(\\d+)\\)\\s(Fatal|Error|Warning|Note):(.*)",
+				"file": 1,
+				"line": 3,
+				"column": 4,
+				"message": 6
+			}
+		}
+    }
