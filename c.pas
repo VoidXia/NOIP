@@ -49,11 +49,15 @@ begin
 end;
 }
 procedure mult(a,b:arrl; var c:arrl);
-var i,j,k:integer;
+var i,j,k,m,n:integer;
 begin
+    m:=max;
+    n:=max;
+    while a[m]<=0 do dec(m);
+    while b[n]<=0 do dec(n);
     for i:=0 to max do c[i]:=0;
-    for i:=length(s1) downto 1 do
-        for j:=length(s2) downto 1 do
+    for i:=m downto 1 do
+        for j:=n downto 1 do
             begin
             c[i+j-1]:=c[i+j-1]+a[i]*b[j];
             for k:=i+j-1 to max do
@@ -139,6 +143,7 @@ begin
   //  for i:=length(s2) downto 1 do write(b[i]);
   //  writeln;
     power(a,b,c);
+  // mult(a,b,c);
  //repeat
  //     half(b,c);
     j:=100;
