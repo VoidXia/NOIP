@@ -32,6 +32,7 @@ begin
     for i:=0 to m do a[-1,i]:=maxn;
     for i:=0 to n do a[i,0]:=maxn;
     for i:=1 to m do if a[0,i]<>maxn then dp[0,i]:=0;
+    
     for i:=0 to n do begin
         ok:=false;
         for j:=x[i] to m do 

@@ -71,3 +71,27 @@ int main(){
     cout<<c[l][n]<<endl;
     return 0;
 }*/
+
+
+
+#include<bits/stdc++.h>
+using namespace std;
+int main(){
+    int n,a[500000],b[500000],ans[500000]={0},pos,len;
+    cin>>n;
+    for(int i=1;i<=n;i++){
+        int y=0;
+        cin>>y;
+        a[y]=i;}
+    for(int i=1;i<=n;i++)cin>>b[i],b[i]=a[b[i]];
+    ans[1]=b[1];
+    len=1;
+    for(int i=2;i<=n;i++){
+        if (b[i]>=ans[len])ans[++len]=b[i];
+        else{
+            pos=lower_bound(ans,ans+len,b[i])-ans;
+            ans[pos]=b[i];
+        }
+    }
+    cout<<len;
+}//luogu1439AC
