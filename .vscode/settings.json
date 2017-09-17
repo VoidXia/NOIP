@@ -2,6 +2,8 @@
     "files.associations": {
         "random": "cpp",
         "algorithm": "cpp",
-        "valarray": "cpp"
+        "valarray": "cpp",
+        "queue": "cpp",
+        "stack": "cpp"
     }
 }
