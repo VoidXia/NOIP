@@ -1,10 +1,12 @@
 #include<iostream>
 using namespace std;
 long long n,a[200000],gett[200000]={0},ans=0x7f7f7f7f,dfsc=0;
+//dfsc是时间戳
 void dfs(long long k){
     if(a[k]==0)return;
     dfsc++;
     if((dfsc>gett[k])&&gett[k]!=0){
+        //第二个点要加dfsc>gett[k]
         //为什么dfsc会等于gett[k]啊
         ans=min(ans,dfsc-gett[k]);
         //cout<<dfsc<<' '<<gett[k]<<' '<<k<<'\n';

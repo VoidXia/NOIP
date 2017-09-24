@@ -1,4 +1,4 @@
-#include<iostream>
+/*#include<iostream>
 using namespace std;
 
 int main(){
@@ -13,3 +13,6 @@ int main(){
     cout<<ans1<<' '<<ans2<<' '<<ans;
     return 0;
 }
+http://blog.csdn.net/u010582475/article/details/47707739
+*/
+
