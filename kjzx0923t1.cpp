@@ -73,34 +73,34 @@ int main(){
         cout<<f[n-1];
     }
     if(ok==0){
-        for(int i=1;i<m-n;i++){
+        for(int i=1;i<=m-n;i++){
             f[i]=1;
             for(int j=i-1;j>=1;j--){
               f[j]=(f[j]+f[j-1])%mod;
-              cout<<f[j]<<' ';
+             // cout<<f[j]<<' ';
             }
-            cout<<"   "<<i<<'\n';
+           // cout<<"   "<<i<<'\n';
         }
-        cout<<'\n';
-        for(int i=m-n;i<=n;i++){
+        //cout<<'\n';
+        for(int i=m-n+1;i<n;i++){
             f[i]=1;
-            for(int j=i-1;j>i-m+n;j--){
+            for(int j=i-1;j>=i-m+n;j--){
                 f[j]=(f[j]+f[j-1])%mod;
-                cout<<f[j]<<' ';
+               // cout<<f[j]<<' ';
                 
             }
-            cout<<"   "<<i<<'\n';
+           // cout<<"   "<<i<<'\n';
         }
-        cout<<'\n';
-        for(int i=n+1;i<m;i++){
+        //cout<<'\n';
+        for(int i=n;i<m;i++){
             f[i]=1;
             for(int j=n-1;j>=i-m+n;j--){
                 f[j]=(f[j]+f[j-1])%mod;
-                cout<<f[j]<<' ';
+               // cout<<f[j]<<' ';
             }
-            cout<<"   "<<i<<'\n';
+         //  cout<<"   "<<i<<'\n';
         }
-        cout<<'\n';
+       // cout<<'\n';
         cout<<f[n-1];
     }
 }
