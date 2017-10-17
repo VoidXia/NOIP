@@ -17,7 +17,7 @@ int main(){
                 f[j]=min(f[j],f[j+2*(a[i]-b[i])]+1);
         if(a[i]<b[i])
             for(int j=2*sum;j>=0;j--)
-                f[j]=min(f[j],f[j+2*(a[i]-b[i])]+1);
+                f[j]=min(f[j],f[j+2*(a[i]-b[i])]+1);//否则没法转移
     }
     for(k=0;k<=sum;k++){
         if (f[sum+k]<30000)break;
