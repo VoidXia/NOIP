@@ -6,6 +6,8 @@
         "queue": "cpp",
         "stack": "cpp",
         "iterator": "cpp",
-        "iostream": "cpp"
+        "iostream": "cpp",
+        "chrono": "cpp",
+        "limits": "cpp"
     }
 }
