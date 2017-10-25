@@ -30,7 +30,33 @@ int main(){
 
 }*/
 #include<iostream>
+#include<cstdio>
+#include<cstdlib>
 using namespace std;
+int n,b;
+int a[100010];
+bool check(int x){
+    int prev=0;
+    int ans=0;
+    for(int i=1;i<=n;i++){
+        if(a[i]-prev<x)ans++;
+        else prev=a[i];
+    }
+    return ans<b;
+}
 int main(){
-    
+
+    for(int i=1;i<=n;i++){
+        scanf("%d",&a[i]);
+    }
+    sort(a+1,a+n+1);
+    b=n-b;
+    int l=0,r=a[n]-a[1];
+    while(l+1<r){
+        int mid=(l+r)>>1;
+        if(check(mid))l=mid;
+        else r=mid+1;
+    }
+    cout<<l;
+    return 0;
 }
