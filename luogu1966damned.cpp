@@ -1,4 +1,7 @@
-#include<bits/stdc++.h>
+#include<iostream>
+#include<cstdio>
+#include<cstdlib>
+#include<algorithm>
 #define lowbit(x) x&(-x)
 using namespace std;
 typedef long long ll;
@@ -6,7 +9,7 @@ ll bi[100010];
 ll n;
 struct one{
     ll x,y;
-}c[100010];
+}c[100010],xx[100010],yy[100010];
 bool cmp(const one& x,const one& y){
     return x.x<y.x;
 }
@@ -25,9 +28,9 @@ ll sum(ll x){
     return ans;
 }
 int main(){
-    freopen("match.in","r",stdin);
-    freopen("match.out","w",stdout);
-    cin>>n;
+    //freopen("match.in","r",stdin);
+    //freopen("match.out","w",stdout);
+    cin>>n;/*
     ll a[100010],aa[100010];
     ll b[100010],bb[100010];
     for(ll i=1;i<=n;i++){
@@ -53,23 +56,38 @@ int main(){
         c[i].y=b[i];
      //   cout<<a[i]<<' '<<b[i]<<'\n';
     }
-    sort(c+1,c+n+1,cmp);
+    sort(c+1,c+n+1,cmp);*/
+    for(int i=1;i<=n;i++){
+        scanf("%lld",&xx[i].x);
+        xx[i].y=i;
+    }
+    for(int i=1;i<=n;i++){
+        scanf("%lld",&yy[i].x);
+        yy[i].y=i;
+    }
+    sort(xx+1,xx+1+n,cmp);
+    sort(yy+1,yy+1+n,cmp);
     ll d[100010];
     for(ll i=1;i<=n;i++){
-        d[i-1]=c[i].y;
+       /* d[i-1]=c[i].y;*/
+       d[yy[i].y]=xx[i].y;
      //   cout<<d[i-1];
     }
    // ll bi[100010];
    ll ans=0;
-    for(ll i=0;i<n;i++){
+    /*for(ll i=0;i<n;i++){
         ans=(i-sum(d[i])+ans)%99999997;
         add(d[i],1);
+    }*/
+    for(int i=1;i<=n;i++){
+        add(d[i],1);
+        ans+=i-sum(d[i]);
     }
     cout<<ans;
-    fclose(stdin);
-    fclose(stdout);
+   // fclose(stdin);
+   // fclose(stdout);
     return 0;
 
 
 
-}
+}*/
