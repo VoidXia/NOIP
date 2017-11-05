@@ -3,6 +3,7 @@
 #include<cstdlib>
 #include<cstring>
 #include<algorithm>
+//木棍棍
 bool cmp(int a,int b){
     return a>b;
 }
