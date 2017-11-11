@@ -6,7 +6,7 @@ int main(){
     int w[110]={0};
     int v[110]={0};
     for(int i=1;i<=t;i++){
-        cin>>w[i]>>t[i];
+        cin>>w[i]>>v[i];
     }
     int dp[1010]={0};
     for(int i=1;i<=n;i++){
