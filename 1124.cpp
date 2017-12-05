@@ -1,7 +1,7 @@
 #include<iostream>
 using namespace std;
 #define kk 3148357999
-typedef long long ll;
+typedef unsigned long long ll;
 inline ll mimi(ll x,ll k){
     ll a=x;
     ll ans=x;
@@ -14,8 +14,11 @@ inline ll mimi(ll x,ll k){
         k>>=1;
     }*/
     for(int i=2;i<=17;i++){
+        ans%=kk;
         ans=(ans*ans)%kk;
+      //  if(ans<0)cout<<"Boom"<<'\n';
     }
+
     ans*=x;
     return ans%=kk;
 }
@@ -25,7 +28,7 @@ int main(){
     for(i=1;;i++){
         if((i&(i-1))==0)cout<<i<<'\n';
         ll yy=mimi(i,65537);
-      //  cout<<yy<<'\n';
+       // cout<<i<<' '<<yy<<'\n';
         if(yy==2161012058){cout<<i;
         break;
         }
