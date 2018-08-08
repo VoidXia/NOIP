@@ -1,7 +1,10 @@
 {
     "version": "0.1.0",
     "command": "g++",
-    "args": ["-g","-o","temp","${file}"],    // 编译命令参数
+    "isShellCommand": true,
+    //"args": ["-g","-o","temp","${file}"],    // 编译命令参数
+    "args": ["-g","${file}","-o","a.out"],
+    "showOutput": "always",
     "problemMatcher": {
         "owner": "cpp",
         "fileLocation": ["relative", "${workspaceRoot}"],

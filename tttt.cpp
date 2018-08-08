@@ -1,8 +1,8 @@
 #include<iostream>
 using namespace std;
 int main(){
-    for(long long i=1;i<=1200000000;i++){
-        int a=1;
-    }
+    double a=9;
+    cout<<a;
     return 0;
+        
 }
