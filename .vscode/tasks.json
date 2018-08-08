@@ -2,8 +2,8 @@
     "version": "0.1.0",
     "command": "g++",
     "isShellCommand": true,
-    //"args": ["-g","-o","temp","${file}"],    // 编译命令参数
-    "args": ["-g","${file}","-o","a.out"],
+    //"args": ["-g","-o","-Wall","temp","${file}"],    // 编译命令参数
+    "args": ["-g","-Wall","${file}","-o","temp.out"],
     "showOutput": "always",
     "problemMatcher": {
         "owner": "cpp",

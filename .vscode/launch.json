@@ -27,11 +27,12 @@
             "name": "(lldb) Launch",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceRoot}/a.out", //调试，也就是运行a.out文件
+            "program": "${workspaceRoot}/temp.out", //调试，也就是运行temp.out文件
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceRoot}",
             "environment": [],
+            "internalConsoleOptions": "neverOpen",
             "externalConsole": true,
             "MIMode": "lldb",
             "preLaunchTask": "g++" //代表执行launch.json前先执行tasks.json中的g++指令

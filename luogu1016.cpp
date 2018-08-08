@@ -44,6 +44,7 @@ int main(){
         }
         if(d2*c<a[j].d-a[i].d){
             int k=i+1;//STILL DONT KNOW WHY WHEN K=1 WILL TLE!!!
+            //When k=i, yy.d will always = i, making it impossible to proceed
             struct ss yy;
             yy.p=999999;
             while(a[k].d-a[i].d<d2*c){
