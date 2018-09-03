@@ -22,7 +22,7 @@ void dfs(int record,int sum,int step,int begin){
         return;
     }
     if(sum==record)dfs(record,0,step+1,1);
-    for(register int i=begin;i<=n;i++){
+    for(int i=begin;i<=n;i++){
         if(!pd[i]&&a[i]+sum<=record){
             pd[i]=1;
             dfs(record,sum+a[i],step,i+1);
@@ -36,7 +36,7 @@ void dfs(int record,int sum,int step,int begin){
 using namespace std;
 int main(){
     scanf("%d",&n);
-    for(register int i=1;i<=n;i++){
+    for(/*register*/ int i=1;i<=n;i++){
         int x;
         scanf("%d",&x);
         if(x<=50){
@@ -51,7 +51,7 @@ int main(){
    // for(register int i=n;i>=1;i--)if(a[i]>50)n--;else break;
    // for(register int i=1;i<=n;i++)sum+=a[i];
 
-    for(register int i=maxnn;i<=summ/2;i++){
+    for(int i=maxnn;i<=summ/2;i++){
         if(summ%i==0)//get;
            dfs(i,0,0,1);
         if (q) break;
