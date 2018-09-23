@@ -23,7 +23,11 @@
         "array": "cpp",
         "deque": "cpp",
         "string_view": "cpp",
-        "vector": "cpp"
+        "vector": "cpp",
+        "__locale": "cpp",
+        "__string": "cpp",
+        "regex": "cpp",
+        "ratio": "cpp"
     },
     "files.autoSave": "afterDelay",
     "editor.fontSize": 17,
