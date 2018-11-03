@@ -1,11 +1,13 @@
 #include<bits/stdc++.h>
 using namespace std;
-const int maxn = 150100;
-map<int,int>last;
+const int maxn = 150050;
+//map<int,int>last;
+int last[6*maxn];
 #define ini(x,a) memset(x,a,sizeof(x))
 struct edge{
     int to,next;
 }e[6*maxn];
+int r[maxn];
 int cnt=0;
 map<int,int>cou;
 void addedge(int a,int b,int c){
@@ -18,11 +20,14 @@ void addedge(int a,int b,int c){
 }
 int u[maxn];
 void bfs(){
+    ini(u,-1);
+    u[1]=0;
     queue<int>q;
     q.push(1);
     //cout<<q.front()<<'\n';
     while(!q.empty()){
         int t=q.front();
+        //cout<<t<<'\n';
         //cout<<q.front()<<'\n';
         q.pop();
         //cout<<last[t]<<"t\n";
@@ -30,9 +35,9 @@ void bfs(){
             int to=e[i].to;
             //cout<<t<<' '<<to<<'\n';
             //cout<<cou[t]<<' '<<cou[to]<<"g\n";
-            if(cou[to]==-1){
+            if(u[to]==-1){
                 q.push(to);
-                cou[to]=cou[t]+1;
+                u[to]=u[t]+1;
             }
         }
     }
@@ -45,25 +50,42 @@ inline int read(){
     return x*a;
 }
 int main(){
-    freopen("anomalies.in","r",stdin);freopen("anomalies.out","w",stdout);
+    //freopen("anomalies.in","r",stdin);freopen("anomalies.out","w",stdout);
     int n=read();
     int a,b,c;
+    ini(last,-1);
     for(int i=1;i<=n;i++){
-        a=read();b=read();c=read();
-        if(!cou.count(a))last[a]=-1;
-        if(!cou.count(b))last[b]=-1;
-        if(!cou.count(c))last[c]=-1;
-        cou[a]=-1;
-        cou[b]=-1;
-        cou[c]=-1;
-        addedge(a,b,c);
+        te[i][0]=read();
+        te[i][1]=read();
+        te[i][2]=read();
+        if(!cou.count(te[i][0]))cou[te[i][0]]=0;
+        if(!cou.count(te[i][2]))cou[te[i][2]]=0;
+        if(!cou.count(te[i][1]))cou[te[i][1]]=0;
+        //addedge(a,b,c);
     }
-    cou[1]=0;
-    bfs();
+    //cou[1]=0;
+    int yy=0;
     for(map<int,int>::iterator it=cou.begin();it!=cou.end();it++){
-    	printf("%d %d\n",(it->first),(it->second));
+        yy++;
         //cout<<(it->first)<<' '<<(it->second)<<'\n';
+        r[yy]=it->first;
+        cou[it->first]=yy;
+        //by finding cou[x] to find its index
     }
-    fclose(stdin);fclose(stdout);
+    //cout<<yy<<'\n';
+    for(int i=1;i<=n;i++){
+        a=te[i][0];b=te[i][1];c=te[i][2];
+        addedge(cou[a],cou[b],cou[c]);
+    }
+    bfs();
+    /*yy=0;
+    for(map<int,int>::iterator it=cou.begin();it!=cou.end();it++){
+        yy++;
+        printf("%ld %d\n",it->first,u[yy]);
+        //cout<<(it->first)<<' '<<r[yy]<<'\n';
+    }*/
+    //cout<<cnt<<'\n';
+    for(int i=1;i<=yy;i++)printf("%d %d\n",r[i],u[i]);
+    //fclose(stdin);fclose(stdout);
     return 0;
 }

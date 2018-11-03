@@ -1,7 +1,7 @@
 #include<iostream>
 #include<algorithm>
 #include<cstring>
-#include<bits/stdc++.h>
+#include"bits/stdc++.h"
 using namespace std;
 int fa[100010];
 int find(int x){
@@ -50,6 +50,7 @@ int main(){
            // cout<<'l';
             uni(a[i].x,a[i].y);
             cnt--;
+            cout<<a[i].z<<'\n';
 
         }
     }

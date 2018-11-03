@@ -1,0 +1,76 @@
+#include<iostream>
+#include<cstdio>
+#include<vector>
+#include<algorithm>
+#include<cstring>
+#include<bits/stdc++.h>
+const int maxn = 500010;
+using namespace std;
+int n,m,s;
+//vector<int >E[maxn];
+struct node{
+    int to,next;
+}E[2*maxn];
+int last[maxn];
+int cnt=0;
+int depth[maxn];
+int f[maxn][21];
+int lg[maxn];
+void dfs(int x,int fa){
+    depth[x]=depth[fa]+1;
+    //cout<<x<<' '<<depth[x]<<'\n';
+    f[x][0]=fa;
+    for(int i=1;i<=lg[depth[x]];i++){
+        f[x][i]=f[f[x][i-1]][i-1];
+    }
+    for(int i=last[x];~i;i=E[i].next){
+        if(E[i].to!=fa)dfs(E[i].to,x);
+    }
+}
+int lca(int x,int y){
+    if(depth[x]<depth[y])swap(x,y);
+        while(depth[x]>depth[y]){
+            //cout<<x<<'\n';
+            //cout<<depth[x]<<' '<<depth[y]<<"A\n";
+            x=f[x][lg[depth[x]-depth[y]]];
+        }
+        //cout<<x<<' '<<y<<'\n';
+        //cout<<depth[x]<<' '<<depth[y]<<"B\n";
+        if(x==y)return x;
+        for(int k=lg[depth[x]];k>=0;k--){
+            if(f[x][k]!=f[y][k]){
+                x=f[x][k];y=f[y][k];
+            }
+        }
+        return f[x][0];
+}
+void addedge(int x,int y){
+    E[cnt].to=y;
+    E[cnt].next=last[x];
+    last[x]=cnt++;
+}
+int main(){
+    memset(last,-1,sizeof(last));
+    cin>>n>>m>>s;
+    for(int i=1;i<n;i++){
+        int x,y;
+        scanf("%d%d",&x,&y);
+        addedge(x,y);
+        addedge(y,x);
+    }
+    lg[0]=-1;
+    for(int i=1;i<=n;i++)lg[i]=lg[i/2]+1;
+    depth[0]=0;
+    f[0][0]=0;
+    //cout<<'\n';
+    for(int i=last[s];~i;i=E[i].next){
+        dfs(E[i].to,s);
+    }
+    //dfs(s,0);
+    while(m--){
+        int x,y;
+        scanf("%d%d",&x,&y);
+        cout<<lca(x,y)<<'\n';
+    }
+    return 0;
+}
