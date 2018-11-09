@@ -1,69 +1,60 @@
 #include<bits/stdc++.h>
 using namespace std;
-const int maxn = 150100;
-map<int,int>last;
+long long n,m,k,s,tt;
+#define N 35200
 #define ini(x,a) memset(x,a,sizeof(x))
-struct edge{
-    int to,next;
-}e[6*maxn];
-int cnt=0;
-map<int,int>cou;
-void addedge(int a,int b,int c){
-    e[cnt].to=a;e[cnt].next=last[b];last[b]=cnt++;
-    e[cnt].to=b;e[cnt].next=last[a];last[a]=cnt++;
-    e[cnt].to=c;e[cnt].next=last[b];last[b]=cnt++;
-    e[cnt].to=a;e[cnt].next=last[c];last[c]=cnt++;
-    e[cnt].to=b;e[cnt].next=last[c];last[c]=cnt++;
-    e[cnt].to=c;e[cnt].next=last[a];last[a]=cnt++;
-}
-int u[maxn];
-void bfs(){
-    queue<int>q;
-    q.push(1);
-    //cout<<q.front()<<'\n';
-    while(!q.empty()){
-        int t=q.front();
-        //cout<<q.front()<<'\n';
-        q.pop();
-        //cout<<last[t]<<"t\n";
-        for(int i=last[t];~i;i=e[i].next){
-            int to=e[i].to;
-            //cout<<t<<' '<<to<<'\n';
-            //cout<<cou[t]<<' '<<cou[to]<<"g\n";
-            if(cou[to]==-1){
-                q.push(to);
-                cou[to]=cou[t]+1;
-            }
-        }
-    }
-}
-int te[maxn][3];
-inline int read(){
-    int x=0,a=1;char c=getchar();
+inline long long read(){
+    long long x=0,a=1;char c=getchar();
     while(!isdigit(c)){if(c=='-')a=-1;c=getchar();}
     while(isdigit(c)){x=x*10+c-'0';c=getchar();}
     return x*a;
 }
+long long last[N],cnt=0,a,b,c;
+struct edge{long long to,next,val;}e[N*8];
+void add(long long a,long long b,long long c){
+    e[cnt].to=b;
+    e[cnt].next=last[a];
+    e[cnt].val=c;
+    last[a]=cnt++;
+}
+long long dis[N][20];
+bool vis[N][20];
+struct node{long long idx;long long dis;long long used;bool operator<(const node&a)const{return dis>a.dis;}};
+void dij(){
+    priority_queue<node>q;
+    q.push((node){s,0,0});
+    dis[s][0]=0;
+    while(!q.empty()){
+        long long u=q.top().idx,t=q.top().used;
+        q.pop();
+        if(vis[u][t]==1)continue;
+        vis[u][t]=1;
+        if(u==tt)continue;
+        for(long long i=last[u];~i;i=e[i].next){
+            long long to=e[i].to;
+            if(t<k&&vis[to][t+1]==0&&dis[to][t+1]>dis[u][t]){
+                dis[to][t+1]=dis[u][t];
+                q.push((node){to,dis[to][t+1],t+1});
+            }
+            if(vis[to][t]==0&&dis[to][t]>dis[u][t]+e[i].val){
+                dis[to][t]=dis[u][t]+e[i].val;
+                q.push((node){to,dis[to][t],t});
+            }
+        }
+    }
+}
 int main(){
-    freopen("anomalies.in","r",stdin);freopen("anomalies.out","w",stdout);
-    int n=read();
-    int a,b,c;
-    for(int i=1;i<=n;i++){
+    ini(last,-1);
+    ini(dis,0x7e);ini(vis,0);
+    //cout<<dis[0]<<'\n';
+    cin>>n>>m>>k>>s>>tt;
+    for(long long i=1;i<=m;i++){
         a=read();b=read();c=read();
-        if(!cou.count(a))last[a]=-1;
-        if(!cou.count(b))last[b]=-1;
-        if(!cou.count(c))last[c]=-1;
-        cou[a]=-1;
-        cou[b]=-1;
-        cou[c]=-1;
-        addedge(a,b,c);
+        add(a,b,c);add(b,a,c);
     }
-    cou[1]=0;
-    bfs();
-    for(map<int,int>::iterator it=cou.begin();it!=cou.end();it++){
-    	printf("%d %d\n",(it->first),(it->second));
-        //cout<<(it->first)<<' '<<(it->second)<<'\n';
-    }
-    fclose(stdin);fclose(stdout);
+    dij();
+    long long ans=9223372036854775000;
+    for(long long i=0;i<=k;i++){ans=min(ans,dis[tt][i]);}
+    cout<<ans;
     return 0;
 }

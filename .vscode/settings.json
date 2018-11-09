@@ -34,7 +34,8 @@
         "initializer_list": "cpp",
         "stdexcept": "cpp",
         "typeinfo": "cpp",
-        "cfenv": "cpp"
+        "cfenv": "cpp",
+        "utility": "cpp"
     },
     "files.autoSave": "afterDelay",
     "editor.fontSize": 17,
@@ -52,7 +53,7 @@
     "git.promptToSaveFilesBeforeCommit": true,
     "git.autofetch": true,
     "code-runner.executorMap": {
-        "cpp": "cd $dir && g++ $fileName -o $fileNameWithoutExt && time $dir$fileNameWithoutExt && rm $fileNameWithoutExt"
+        "cpp": "cd $dir && g++ $fileName -o $fileNameWithoutExt -Wall  && time $dir$fileNameWithoutExt && rm $fileNameWithoutExt"
     },
     "materialTheme.fixIconsRunning": false,
     "workbench.iconTheme": "eq-material-theme-icons-light",

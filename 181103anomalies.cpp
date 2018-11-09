@@ -1,4 +1,43 @@
 #include<bits/stdc++.h>
+namespace fast_IO {
+    const int IN_LEN=10000000,OUT_LEN=10000000;
+    char ibuf[IN_LEN],obuf[OUT_LEN],*ih=ibuf+IN_LEN,*oh=obuf;
+    char *lastin=ibuf+IN_LEN;
+    const char *lastout=ibuf+OUT_LEN-1;
+    inline char getchar_() {
+        if(ih==lastin)lastin=ibuf+fread(ibuf,1,IN_LEN,stdin),ih=ibuf;
+        return (*ih++);
+    } inline void putchar_(const char x) {
+        if(ih==lastout)fwrite(obuf,1,oh-obuf,stdout),oh=obuf;
+        *oh++=x;
+    } inline void flush() {
+        fwrite(obuf, 1, oh - obuf, stdout);
+    }
+}
+using namespace fast_IO;
+using namespace std;
+template <typename T>
+inline void Read(T&x) {
+    char cu=getchar();
+    x=0;
+    bool fla=0;
+    while(!isdigit(cu)) {
+        if(cu=='-')fla=1;
+        cu=getchar();
+    }
+    while(isdigit(cu))x=x*10+cu-'0',cu=getchar();
+    if(fla)x=-x;
+}
+template <typename T>
+void printe(const T x) {
+    if(x>=10)printe(x/10);
+    putchar(x%10+'0');
+}
+template <typename T>
+inline void Write(const T x) {
+    if(x<0)putchar('-'),printe(-x);
+    else printe(x);
+}
 using namespace std;
 const int maxn = 150100;
 //map<int,int>last;
@@ -17,9 +56,11 @@ void addedge(int a,int b){
     e[cnt].to=b;e[cnt].next=last[a];last[a]=cnt++;
 }
 int u[maxn*3];
+bool vis[maxn];
 void bfs(){
     ini(u,-1);
     u[1]=0;
+    vis[1]=1;
     queue<int>q;
     q.push(1);
     //cout<<q.front()<<'\n';
@@ -33,7 +74,7 @@ void bfs(){
             int to=e[i].to;
             //cout<<t<<' '<<to<<'\n';
             //cout<<cou[t]<<' '<<cou[to]<<"g\n";
-            if(u[to]==-1){
+            if(vis[to]==0){
                 q.push(to);
                 u[to]=u[t]+1;
             }
@@ -48,6 +89,7 @@ inline int read(){
     return x;
 }
 int main(){
+    set<pair<int,int> >temp;
     freopen("anomalies.in","r",stdin);freopen("anomalies.out","w",stdout);
     int n=read();
     int a,b,c;
@@ -75,6 +117,7 @@ int main(){
     }
     //cout<<yy<<'\n';
     //bool fg=0;
+    pair<int,int>ab,ac,bc,ba,ca,cb;
     for(int i=1;i<=n;i++){
         a=cou[te[i][0]];b=cou[te[i][1]];c=cou[te[i][2]];
         /*fg=0;for(int i=0;i<v[a].size();i++)if(v[a][i]==b)fg=1;
@@ -83,6 +126,11 @@ int main(){
         if(fg==0){addedge(b,c);v[b].push_back(c);v[c].push_back(b);}
         fg=0;for(int i=0;i<v[c].size();i++)if(v[c][i]==a)fg=1;
         if(fg==0){addedge(c,a);v[c].push_back(a);v[a].push_back(c);}*/
+        /*ab=make_pair(a,b);bc=make_pair(b,c);ca=make_pair(c,a);
+        ba=make_pair(b,a);cb=make_pair(c,b);ac=make_pair(a,c);
+        if(!temp.count(ab)){addedge(a,b);temp.insert(ab);temp.insert(ba);}
+        if(!temp.count(bc)){addedge(b,c);temp.insert(bc);temp.insert(cb);}
+        if(!temp.count(ca)){addedge(c,a);temp.insert(ca);temp.insert(ac);}*/
         addedge(a,b);addedge(b,c);addedge(c,a);
     }
     bfs();
