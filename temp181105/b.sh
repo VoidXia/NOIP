@@ -1,11 +1,11 @@
 #!/bin/bash
 while true; do
-    ./data > data.in
+    ./data >data.in
     ./std <data.in >std.out
     ./code <data.in >code.out
-    if diff std.out code.out; then
+    if diff code.out std.out; then
         printf "AC\n"
-    else
+    else 
         printf "WA\n"
         exit 0
     fi
