@@ -31,7 +31,7 @@ class seqList{
             data[currentLength]=aa;
             currentLength++;
         }
-        elemType del(int ii){
+        elemType del(int ii=currentLength){
             //data[currentLength]=aa;
             currentLength--;
             return data[currentLength+1];
@@ -54,7 +54,7 @@ class seqStack{
         ~seqStack(){delete[]data;}
         friend ostream& operator<<(ostream& os, const seqStack& cp){//重载<<
             int i=cp.currentLength;
-            while(!cp.isempty())os<<cp.data[--i]<<' ';
+            while(!isempty())os<<cp.data[--i]<<' ';
             return os;
         }
         void push(const elemType &aa){
@@ -100,7 +100,7 @@ class LinkList{
             while(tmp!=NULL)os<<tmp->data<<' ',tmp=tmp->next;
             return os;
         }
-        void insert(const elemType &aa, int ii){
+        void insert(const elemType &aa, int ii=currentLength){
             NODE <elemType> *tmp=HEAD;
             NODE <elemType> *tempnode = new NODE <elemType> (aa);
             while(tmp!=NULL&&ii)ii-=1,tmp=tmp->next;
@@ -108,7 +108,7 @@ class LinkList{
             tmp->next=tempnode;
             currentLength++;
         }
-        void del(int ii){
+        void del(int ii=currentLength){
             //data[currentLength]=aa;
             currentLength--;
             NODE <elemType> *tmp=HEAD;
@@ -131,7 +131,7 @@ class LinkStack{
             while(tmp!=NULL)os<<tmp->data<<' ',tmp=tmp->next;
             return os;
         }
-        void push(const elemType &aa, int ii){
+        void push(const elemType &aa, int ii=currentLength){
             NODE <elemType> *tmp=HEAD;
             NODE <elemType> *tempnode = new NODE <elemType> (aa);
             while(tmp!=NULL&&ii)ii-=1,tmp=tmp->next;
@@ -139,7 +139,7 @@ class LinkStack{
             tmp->next=tempnode;
             currentLength++;
         }
-        elemType pop(int ii){
+        elemType pop(int ii=currentLength){
             //data[currentLength]=aa;
             currentLength--;
             NODE <elemType> *tmp=HEAD;
@@ -151,5 +151,3 @@ class LinkStack{
         }
         void clear(){currentLength=0;}
 };
-
-int main(){return 0;}
